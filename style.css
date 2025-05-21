@@ -1,0 +1,271 @@
+/* --- Theme Variables --- */
+:root {
+  --bg-color: #f0f0f0;
+  --container-bg: white;
+  --text-color: #333;
+  --input-bg: white;
+  --input-border: #ccc;
+  --input-text: #333;
+  --button-primary-bg: #007bff;
+  --button-primary-text: white;
+  --button-success-bg: #4caf50;
+  --button-danger-bg: #f44336;
+  --button-warning-bg: #ffc107;
+  --button-warning-text: black;
+  --border-color: #eee;
+  --hr-color: #ccc;
+  --select-arrow: #333;
+  --chart-legend-text: #333;
+  --chart-title-text: #333;
+  --chart-grid-line-color: #e0e0e0;
+  --chart-axis-label-color: #666;
+  --bar-chart-border-color: #c0c0c0;
+}
+
+body.dark-mode {
+  --bg-color: #1e1e1e;
+  --container-bg: #2c2c2c;
+  --text-color: #e0e0e0;
+  --input-bg: #3a3a3a;
+  --input-border: #555;
+  --input-text: #e0e0e0;
+  --button-primary-bg: #0056b3;
+  --button-success-bg: #388e3c;
+  --button-danger-bg: #d32f2f;
+  --button-warning-bg: #ffa000;
+  --button-warning-text: black;
+  --border-color: #444;
+  --hr-color: #555;
+  --select-arrow: #e0e0e0;
+  --chart-legend-text: #e0e0e0;
+  --chart-title-text: #e0e0e0;
+  --chart-grid-line-color: #4a4a4a;
+  --chart-axis-label-color: #aaa;
+  --bar-chart-border-color: #5a5a5a;
+}
+
+/* --- General Styles --- */
+body {
+  font-family: sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  margin: 0;
+  padding: 20px 10px;
+  box-sizing: border-box;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.container {
+  background-color: var(--container-bg);
+  padding: 20px 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  width: 90%;
+  max-width: 1100px;
+  transition: background-color 0.3s;
+}
+
+/* --- Theme Switcher --- */
+.theme-switcher-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 10px;
+  background-color: var(--container-bg);
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.theme-switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 26px;
+  margin-right: 10px;
+}
+.theme-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+}
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: 0.4s;
+}
+input:checked + .slider {
+  background-color: #007bff;
+}
+input:checked + .slider:before {
+  transform: translateX(24px);
+}
+.slider.round {
+  border-radius: 26px;
+}
+.slider.round:before {
+  border-radius: 50%;
+}
+
+/* --- Deck Management & Stats --- */
+hr {
+  border: none;
+  border-top: 1px solid var(--hr-color);
+  margin: 20px 0;
+}
+.deck-management {
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border-color);
+}
+.deck-management input[type="text"],
+.deck-management select {
+  padding: 10px;
+  margin: 8px 0;
+  border: 1px solid var(--input-border);
+  background-color: var(--input-bg);
+  color: var(--input-text);
+  border-radius: 4px;
+  width: calc(100% - 22px);
+  max-width: 280px;
+  box-sizing: border-box;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+.deck-management select {
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23_SELECT_ARROW_COLOR_%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.4-12.8z%22%2F%3E%3C%2Fsvg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 12px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding-right: 30px;
+}
+body:not(.dark-mode) .deck-management select {
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23333333%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.4-12.8z%22%2F%3E%3C%2Fsvg%3E");
+}
+body.dark-mode .deck-management select {
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23e0e0e0%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.4-12.8z%22%2F%3E%3C%2Fsvg%3E");
+}
+.deck-management button {
+  padding: 10px 18px;
+  margin-top: 10px;
+}
+.current-deck-stats h2 {
+  color: var(--text-color);
+  margin-top: 0;
+}
+.scores p {
+  font-size: 1.2em;
+  margin: 10px 0;
+}
+
+/* Button styles */
+.buttons button,
+.deck-management button {
+  font-size: 1em;
+  padding: 10px 20px;
+  margin: 10px 5px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  color: var(--button-primary-text);
+  background-color: var(--button-primary-bg);
+  transition: opacity 0.2s, background-color 0.3s;
+}
+.buttons button:disabled,
+.deck-management button:disabled {
+  background-color: #aaa !important;
+  color: #eee !important;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+body.dark-mode .buttons button:disabled,
+body.dark-mode .deck-management button:disabled {
+  background-color: #555 !important;
+  color: #888 !important;
+}
+#winButton {
+  background-color: var(--button-success-bg);
+}
+#lossButton {
+  background-color: var(--button-danger-bg);
+}
+#resetButton.warning-button {
+  background-color: var(--button-warning-bg);
+  color: var(--button-warning-text);
+}
+#deleteDeckButton.danger-button {
+  background-color: var(--button-danger-bg);
+}
+#addDeckButton {
+  background-color: var(--button-primary-bg);
+}
+#winButton:hover:not(:disabled),
+#lossButton:hover:not(:disabled),
+#resetButton.warning-button:hover:not(:disabled),
+#addDeckButton:hover:not(:disabled),
+#deleteDeckButton.danger-button:hover:not(:disabled) {
+  opacity: 0.85;
+}
+
+.charts-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border-color);
+}
+
+.chart-container {
+  flex: 1 1 400px;
+  min-width: 300px;
+  position: relative;
+}
+
+.chart-container h2 {
+  color: var(--text-color);
+  margin-bottom: 15px;
+  font-size: 1.3em;
+}
+
+.pie-chart-container {
+  max-width: 450px;
+  height: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  overflow: hidden;
+  /* Add some padding to the container itself to see if it helps visually */
+  /* padding: 10px; */
+  /* box-sizing: border-box; */
+}
+
+.performance-chart-container {
+  padding-bottom: 20px;
+}
+
+#decksPieChart,
+#winratePerformanceChart {
+  display: block;
+  width: 100%;
+  height: 100%;
+}

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Multi-Deck Win/Loss Tracker</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body>
+    <div class="theme-switcher-container">
+      <label class="theme-switch" for="themeCheckbox">
+        <input type="checkbox" id="themeCheckbox" />
+        <span class="slider round"></span>
+      </label>
+      <span>Dark Mode</span>
+    </div>
+
+    <div class="container">
+      <h1>Multi-Deck Tracker</h1>
+
+      <div class="deck-management">
+        <h2>Manage Decks</h2>
+        <input type="text" id="newDeckName" placeholder="New Deck Name" />
+        <button id="addDeckButton">Add Deck</button>
+        <hr />
+        <label for="deckSelector">Current Deck:</label>
+        <select id="deckSelector">
+          <option value="">-- Select a Deck --</option>
+        </select>
+        <button id="deleteDeckButton" class="danger-button">
+          Delete Selected Deck
+        </button>
+      </div>
+
+      <div class="current-deck-stats">
+        <h2 id="currentDeckNameDisplay">No Deck Selected</h2>
+        <div class="scores">
+          <p>Wins: <span id="winsCount">0</span></p>
+          <p>Losses: <span id="lossesCount">0</span></p>
+          <p>Win Rate: <span id="winRate">N/A</span></p>
+        </div>
+        <div class="buttons">
+          <button id="winButton" disabled>WIN</button>
+          <button id="lossButton" disabled>LOSS</button>
+          <button id="resetButton" class="warning-button" disabled>
+            RESET DECK STATS
+          </button>
+        </div>
+      </div>
+
+      <div class="charts-grid">
+        <div class="chart-container pie-chart-container">
+          <h2>Deck Usage Overview</h2>
+          <canvas id="decksPieChart"></canvas>
+        </div>
+
+        <div class="chart-container performance-chart-container">
+          <h2>Deck Performance (Sorted by Winrate)</h2>
+          <canvas id="winratePerformanceChart"></canvas>
+        </div>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
